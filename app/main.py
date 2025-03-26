@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Animal:
-    alive = []
+    alive: list[Animal] = []
 
     def __init__(self, name: str, health: int | None = 100) -> None:
         self.name, self.health, self.hidden = name, health, False
@@ -15,7 +15,6 @@ class Animal:
 
     @classmethod
     def add_animal(cls, new_animal: Animal) -> None:
-        print("1")
         cls.alive.append(new_animal)
 
     @classmethod
@@ -24,13 +23,11 @@ class Animal:
             del cls.alive[cls.alive.index(new_animal)]
 
     def __repr__(self) -> str:
-        return ", ".join([
-            (
-                f"{{Name: {self.name}, "
-                f"Health: {self.health}, "
-                f"Hidden: {self.hidden}}}"
-            )
-        ])
+        return (
+            f"{{Name: {self.name}, "
+            f"Health: {self.health}, "
+            f"Hidden: {self.hidden}}}"
+        )
 
 
 class Herbivore(Animal):
